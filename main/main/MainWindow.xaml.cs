@@ -161,7 +161,8 @@ namespace main
                 }
                 else
                 {
-                    stack[++top] = int.Parse(word);
+                    if(word.Length<10)
+                        stack[++top] = int.Parse(word);
                 }
             }
             decimal_result.Text = stack[0].ToString();
@@ -170,61 +171,14 @@ namespace main
 
         private void Preorder()
         {
-            string[] stack = new string[100];
-            int top = -1;
             if (preorder_result.Text == null)
                 preorder_result.Text = "0";
-            else
-            {
+            else{
                 preorder_result.Clear();
-                string inorder = input_text.Text;
-                char[] inorder_array = inorder.ToArray();
-                for (var i = 0; i < inorder.Length; i++)
-                {
-                    if (inorder_array[i] == '+')
-                    {
-                        preorder_result.Text = preorder_result.Text + " ";
-                        for (var j = top; j > -1; j--)
-                        {
-                            if ((stack[j] == "*") | (stack[j] == "/"))
-                            {
-                                preorder_result.Text = preorder_result.Text + stack[j] + " ";
-                                top--;
-                            }
-                        }
-                        stack[++top] = "+";
-                    }
-                    else if (inorder_array[i] == '-')
-                    {
-                        preorder_result.Text = preorder_result.Text + " ";
-                        for (var j = top; j > -1; j--)
-                        {
-                            if ((stack[j] == "*") | (stack[j] == "/"))
-                            {
-                                preorder_result.Text = preorder_result.Text + stack[j] + " ";
-                                top--;
-                            }
-                        }
-                        stack[++top] = "-";
-                    }
-                    else if (inorder_array[i] == '*')
-                    {
-                        preorder_result.Text = preorder_result.Text + " ";
-                        stack[++top] = "*";
-                    }
-                    else if (inorder_array[i] == '/')
-                    {
-                        preorder_result.Text = preorder_result.Text + " ";
-                        stack[++top] = "/";
-                    }
-                    else
-                        preorder_result.Text = preorder_result.Text + inorder_array[i];
-                }
-                for (var i = top; i > -1; i--)
-                {
-                    preorder_result.Text = preorder_result.Text + " " + stack[i];
-                    top--;
-                }
+                string postorder = postorder_result.Text;
+                string[] postorder_array = postorder.Split(' ');
+                for(var i=postorder_array.Length-1; i>-1; i--)
+                    preorder_result.Text += (postorder_array[i] + " ");
             }
         }
     }

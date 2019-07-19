@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:main"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800" FontSize="17px">
-    <Grid>
+    <Grid Background="{DynamicResource {x:Static SystemColors.MenuBarBrushKey}}">
         <Grid Width="700" Height="350">
             <Grid.RowDefinitions>
                 <RowDefinition Height="80"/>
@@ -28,7 +28,7 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <!-- Input Text Block -->
-            <TextBox Name="input_text" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center"  Margin="0,0,0,0" Grid.ColumnSpan="5" TextWrapping="Wrap" Text="0" IsReadOnly="True" TextAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Center" Width="330" Height="50"/>
+            <TextBox Name="input_text" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center"  Margin="0,0,0,0" Grid.ColumnSpan="5" TextWrapping="Wrap" Text="0" IsReadOnly="True" TextAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Center" Width="330" Height="50" BorderBrush="#FFABADB3"/>
             <!-- Number 0~9 Button -->
             <Button Name="zero" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Content="0" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" Width="120" Height="50" Click="Number_Click"/>
             <Button Name="one" Grid.Row="3" Grid.Column="0" Content="1" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" Width="50" Height="50" Click="Number_Click"/>
@@ -40,7 +40,7 @@
             <Button Name="seven" Grid.Row="1" Grid.Column="0" Content="7" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" Width="50" Height="50" Click="Number_Click"/>
             <Button Name="eight" Grid.Row="1" Grid.Column="1" Content="8" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" Width="50" Height="50" Click="Number_Click"/>
             <Button Name="nine" Grid.Row="1" Grid.Column="2" Content="9" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" Width="50" Height="50" Click="Number_Click"/>
-   
+
             <!-- Operator Button -->
             <Button Name="divide" Grid.Row="1" Grid.Column="3" Content="/" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" Width="50" Height="50" Click="Operate_Click"/>
             <Button Name="multiple" Grid.Row="2" Grid.Column="3" Content="*" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" Width="50" Height="50" Click="Operate_Click"/>

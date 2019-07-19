@@ -5,8 +5,60 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:main"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800" FontSize="17px">
     <Grid>
-        
+        <Grid Width="700" Height="350">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="80"/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <!-- Input Text Block -->
+            <TextBox Name="input_text" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center"  Margin="0,0,0,0" Grid.ColumnSpan="5" TextWrapping="Wrap" Text="" IsReadOnly="True" TextAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Center" Width="330" Height="50"/>
+            <!-- Number 0~9 Button -->
+            <Button Name="zero" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Content="0" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" Width="120" Height="50" Click="Zero_Click"/>
+            <Button Name="one" Grid.Row="3" Grid.Column="0" Content="1" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" Width="50" Height="50" Click="One_Click"/>
+            <Button Name="two" Grid.Row="3" Grid.Column="1" Content="2" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" Width="50" Height="50" Click="Two_Click"/>
+            <Button Name="three" Grid.Row="3" Grid.Column="2" Content="3" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" Width="50" Height="50" Click="Three_Click"/>
+            <Button Name="four" Grid.Row="2" Grid.Column="0" Content="4" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" Width="50" Height="50" Click="Four_Click"/>
+            <Button Name="five" Grid.Row="2" Grid.Column="1" Content="5" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" Width="50" Height="50" Click="Five_Click"/>
+            <Button Name="six" Grid.Row="2" Grid.Column="2" Content="6" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" Width="50" Height="50" Click="Six_Click"/>
+            <Button Name="seven" Grid.Row="1" Grid.Column="0" Content="7" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" Width="50" Height="50" Click="Seven_Click"/>
+            <Button Name="eight" Grid.Row="1" Grid.Column="1" Content="8" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" Width="50" Height="50" Click="Eight_Click"/>
+            <Button Name="nine" Grid.Row="1" Grid.Column="2" Content="9" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" Width="50" Height="50" Click="Nine_Click"/>
+   
+            <!-- Operator Button -->
+            <Button Name="divide" Grid.Row="1" Grid.Column="3" Content="/" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" Width="50" Height="50" Click="Divide_Click"/>
+            <Button Name="multiple" Grid.Row="2" Grid.Column="3" Content="*" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" Width="50" Height="50" Click="Multiple_Click"/>
+            <Button Name="sub" Grid.Row="3" Grid.Column="3" Content="-" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" Width="50" Height="50" Click="Sub_Click"/>
+            <Button Name="add" Grid.Row="4" Grid.Column="3" Content="+" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" Width="50" Height="50" Click="Add_Click"/>
+            <!-- Backspace & Clear Button -->
+            <Button Name="backspace" Grid.Row="1" Grid.Column="4" Grid.RowSpan="2" Content="←" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" Width="50" Height="120" Click="Backspace_Click"/>
+            <Button Name="ac" Grid.Row="3" Grid.Column="4" Grid.RowSpan="2" Content="AC" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" Width="50" Height="120" Click="Ac_Click"/>
+            <!--Result Description-->
+            <TextBox Grid.Row="1" Grid.Column="5" HorizontalAlignment="Center"  Margin="0,0,0,0" Grid.ColumnSpan="2" TextWrapping="Wrap" Text="前序輸出" IsReadOnly="True" TextAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Center" Width="120" Height="50"/>
+            <TextBox Grid.Row="2" Grid.Column="5" HorizontalAlignment="Center"  Margin="0,0,0,0" Grid.ColumnSpan="2" TextWrapping="Wrap" Text="後序輸出" IsReadOnly="True" TextAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Center" Width="120" Height="50"/>
+            <TextBox Grid.Row="3" Grid.Column="5" HorizontalAlignment="Center"  Margin="0,0,0,0" Grid.ColumnSpan="2" TextWrapping="Wrap" Text="十進位答案" IsReadOnly="True" TextAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Center" Width="120" Height="50"/>
+            <TextBox Grid.Row="4" Grid.Column="5" HorizontalAlignment="Center"  Margin="0,0,0,0" Grid.ColumnSpan="2" TextWrapping="Wrap" Text="二進位答案" IsReadOnly="True" TextAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Center" Width="120" Height="50"/>
+            <!--Result-->
+            <TextBox Name="preorder" Grid.Row="1" Grid.Column="7" HorizontalAlignment="Center"  Margin="0,0,0,0" Grid.ColumnSpan="3" TextWrapping="Wrap" Text="" IsReadOnly="True" TextAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Center" Width="190" Height="50"/>
+            <TextBox Name="postorder" Grid.Row="2" Grid.Column="7" HorizontalAlignment="Center"  Margin="0,0,0,0" Grid.ColumnSpan="3" TextWrapping="Wrap" Text="" IsReadOnly="True" TextAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Center" Width="190" Height="50"/>
+            <TextBox Name="decimal" Grid.Row="3" Grid.Column="7" HorizontalAlignment="Center"  Margin="0,0,0,0" Grid.ColumnSpan="3" TextWrapping="Wrap" Text="" IsReadOnly="True" TextAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Center" Width="190" Height="50"/>
+            <TextBox Name="binary" Grid.Row="4" Grid.Column="7" HorizontalAlignment="Center"  Margin="0,0,0,0" Grid.ColumnSpan="3" TextWrapping="Wrap" Text="" IsReadOnly="True" TextAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Center" Width="190" Height="50"/>
+        </Grid>
     </Grid>
 </Window>

@@ -134,7 +134,7 @@ namespace main
 
         private void Calculate()
         {
-            int[] stack = new int[100];
+            double[] stack = new double[100];
             int top = -1;
             string postorder = postorder_result.Text;
             string[] postorder_array = postorder.Split(' ');
@@ -156,7 +156,8 @@ namespace main
                     }
                     else if ((word == "/") & (top > 0))
                     {
-                        stack[top - 1] = Convert.ToInt32(stack[top - 1] / stack[top--]);
+                        //stack[top - 1] = Convert.ToInt32(stack[top - 1] / stack[top--]);
+                        stack[top - 1] /= stack[top--];
                     }
                 }
                 else
@@ -165,15 +166,40 @@ namespace main
                         stack[++top] = int.Parse(word);
                 }
             }
-            decimal_result.Text = stack[0].ToString();
-            binary_result.Text = Convert.ToString(stack[0], 2);
+
+            decimal_result.Text = Math.Round(stack[0], 3).ToString();
+            int integer = Convert.ToInt16(Math.Floor(stack[0]));
+            binary_result.Text = Convert.ToString(integer, 2);
+            double not_int = stack[0] - Math.Floor(stack[0]);
+            if(not_int != 0){
+                binary_result.Text = binary_result.Text + ".";
+                deTobi(not_int);
+            }
+                
+            //binary_result.Text = Convert.ToString(stack[0], 2);
+            
+        }
+
+        private void deTobi(double not_int)
+        {
+            for(var i=0 ; (i<5) & (not_int!=0) ; i++)
+            {
+                not_int *= 2;
+                if(not_int >= 1){
+                    binary_result.Text = binary_result.Text + "1";
+                    not_int-=1;
+                }
+                else
+                    binary_result.Text = binary_result.Text + "0";
+            }
         }
 
         private void Preorder()
         {
             if (preorder_result.Text == null)
                 preorder_result.Text = "0";
-            else{
+            else
+            {
                 preorder_result.Clear();
                 string postorder = postorder_result.Text;
                 string[] postorder_array = postorder.Split(' ');

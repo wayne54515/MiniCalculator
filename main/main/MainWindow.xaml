@@ -59,6 +59,10 @@
             <TextBox Name="postorder_result" Grid.Row="2" Grid.Column="7" HorizontalAlignment="Center"  Margin="0,0,0,0" Grid.ColumnSpan="3" TextWrapping="Wrap" Text="0" IsReadOnly="True" TextAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Center" Width="190" Height="50"/>
             <TextBox Name="decimal_result" Grid.Row="3" Grid.Column="7" HorizontalAlignment="Center"  Margin="0,0,0,0" Grid.ColumnSpan="3" TextWrapping="Wrap" Text="0" IsReadOnly="True" TextAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Center" Width="190" Height="50"/>
             <TextBox Name="binary_result" Grid.Row="4" Grid.Column="7" HorizontalAlignment="Center"  Margin="0,0,0,0" Grid.ColumnSpan="3" TextWrapping="Wrap" Text="0" IsReadOnly="True" TextAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Center" Width="190" Height="50"/>
+            <!--Save & Show-->
+            <!-- Backspace & Clear Button -->
+            <Button Name="save" Grid.Row="0" Grid.Column="6" Grid.ColumnSpan="2" Content="儲存" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" Width="120" Height="50" Click="Save_Data"/>
+            <Button Name="show" Grid.Row="0" Grid.Column="8" Grid.ColumnSpan="2" Content="展示資料" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" Width="120" Height="50" Click="Show_Data"/>
         </Grid>
     </Grid>
 </Window>

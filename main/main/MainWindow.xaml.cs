@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MySql.Data.MySqlClient;
+
 
 namespace main
 {
@@ -89,7 +91,7 @@ namespace main
                         postorder_result.Text = postorder_result.Text + " ";
                         for(var j=top; j>-1; j--)
                         {
-                            if((stack[j] == "*")|(stack[j] == "/"))
+                            if((stack[j] == "*") | (stack[j] == "/") | (stack[j] == "+") | (stack[j] == "-"))
                             {
                                 postorder_result.Text = postorder_result.Text + stack[j] + " ";
                                 top--;
@@ -102,7 +104,7 @@ namespace main
                         postorder_result.Text = postorder_result.Text + " ";
                         for (var j = top; j > -1; j--)
                         {
-                            if ((stack[j] == "*") | (stack[j] == "/"))
+                            if ((stack[j] == "*") | (stack[j] == "/") | (stack[j] == "+") | (stack[j] == "-"))
                             {
                                 postorder_result.Text = postorder_result.Text + stack[j] + " ";
                                 top--;
@@ -113,11 +115,27 @@ namespace main
                     else if (inorder_array[i] == '*')
                     {
                         postorder_result.Text = postorder_result.Text + " ";
+                        for (var j = top; j > -1; j--)
+                        {
+                            if ((stack[j] == "*") | (stack[j] == "/"))
+                            {
+                                postorder_result.Text = postorder_result.Text + stack[j] + " ";
+                                top--;
+                            }
+                        }
                         stack[++top] = "*";
                     }
                     else if (inorder_array[i] == '/')
                     {
                         postorder_result.Text = postorder_result.Text + " ";
+                        for (var j = top; j > -1; j--)
+                        {
+                            if ((stack[j] == "*") | (stack[j] == "/"))
+                            {
+                                postorder_result.Text = postorder_result.Text + stack[j] + " ";
+                                top--;
+                            }
+                        }
                         stack[++top] = "/";
                     }
                     else
@@ -206,6 +224,103 @@ namespace main
                 for(var i=postorder_array.Length-1; i>-1; i--)
                     preorder_result.Text += (postorder_array[i] + " ");
             }
+        }
+
+        private void Save_Data(object sender, RoutedEventArgs e)
+        {
+            string connStr = "server=127.0.0.1;" +
+                            "port=3306;" +
+                            "user id=root;" +
+                            "password=0000;" +
+                            "database=mini_calculation;" +
+                            "charset=utf8;";
+            MySqlConnection conn = new MySqlConnection(connStr);
+            conn.Open();
+            String sql_find = "Select * from result where postorder='" + postorder_result.Text.ToString() + "'";
+            //String sql_find = "Select * from result";
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand(sql_find, conn);
+                MySqlDataReader myData = cmd.ExecuteReader();
+                if (!myData.HasRows)
+                {
+                    myData.Close();
+                    // 如果沒有資料,顯示沒有資料的訊息 
+                    Console.WriteLine("No data.");
+                    String sql_insert = "Insert into result(inorder, postorder, preorder, deci, bi) values" +
+                    "('" + input_text.Text.ToString() + "','" + postorder_result.Text.ToString() +
+                    "','" + preorder_result.Text.ToString() + "','" + decimal_result.Text.ToString() +
+                    "','" + binary_result.Text.ToString() + "');";
+
+                    cmd = new MySqlCommand(sql_insert, conn);
+                    myData = cmd.ExecuteReader();
+                    MessageBox.Show("Insert Success");
+                }
+                else
+                {
+                    // 讀取資料並且顯示出來 
+                    /*while (myData.Read())
+                    {
+                        Console.WriteLine("Text={0}", myData.GetString(0));
+                    }*/
+                    MessageBox.Show("Data Exist");
+                    myData.Close();
+                }
+                myData.Close();
+            }
+            catch(MySql.Data.MySqlClient.MySqlException ex)
+            {
+                Console.WriteLine("Error " + ex.Number + " : " + ex.Message);
+            }
+
+            conn.Close();
+        }
+
+        private void Show_Data(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
+            DataShow w_data = new DataShow();
+            w_data.Show();
+
+            /*string connStr = "server=127.0.0.1;" +
+                            "port=3306;" +
+                            "user id=root;" +
+                            "password=0000;" +
+                            "database=mini_calculation;" +
+                            "charset=utf8;";
+            MySqlConnection conn = new MySqlConnection(connStr);
+            conn.Open();
+            String sql_find = "Select * from result;";
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand(sql_find, conn);
+                MySqlDataReader myData = cmd.ExecuteReader();
+                if (!myData.HasRows)
+                { 
+                    // 如果沒有資料,顯示沒有資料的訊息 
+                    Console.WriteLine("No data.");
+                }
+                else
+                {
+                    // 讀取資料並且顯示出來 
+                    while (myData.Read())
+                    {
+                        Console.WriteLine("id={0}", myData.GetString(0));
+                        Console.WriteLine("inorder={0}", myData.GetString(1));
+                        Console.WriteLine("postorder={0}", myData.GetString(2));
+                        Console.WriteLine("preorder={0}", myData.GetString(3));
+                        Console.WriteLine("decimal={0}", myData.GetString(4));
+                        Console.WriteLine("binary={0}", myData.GetString(5));
+                    }
+                }
+                myData.Close();
+            }
+            catch (MySql.Data.MySqlClient.MySqlException ex)
+            {
+                Console.WriteLine("Error " + ex.Number + " : " + ex.Message);
+            }
+
+            conn.Close();*/
         }
     }
 
